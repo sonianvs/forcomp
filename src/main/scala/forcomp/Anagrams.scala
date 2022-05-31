@@ -40,7 +40,7 @@ object Anagrams extends AnagramsInterface {
 
 
   /** Converts a sentence into its character occurrence list. */
-  def sentenceOccurrences(s: Sentence): Occurrences = ???
+  def sentenceOccurrences(s: Sentence): Occurrences = wordOccurrences(s.mkString)
 
   /** The `dictionaryByOccurrences` is a `Map` from different occurrences to a sequence of all
    *  the words that have that occurrence count.
@@ -162,5 +162,7 @@ object Dictionary {
 }
 
 object test extends App {
+  val list = List("Reading", "a", "book")
   println("Reading a book".groupBy(_.toLower).map(c => (c._1, c._2.length)).toList)
+  println(list.mkString)
 }
