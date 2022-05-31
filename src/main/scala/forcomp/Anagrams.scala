@@ -35,7 +35,9 @@ object Anagrams extends AnagramsInterface {
    *
    *  Note: you must use `groupBy` to implement this method!
    */
-  def wordOccurrences(w: Word): Occurrences = ???
+  def wordOccurrences(w: Word): Occurrences = w.groupBy(_.toLower).map(c => (c._1, c._2.length)).toList.sorted
+
+
 
   /** Converts a sentence into its character occurrence list. */
   def sentenceOccurrences(s: Sentence): Occurrences = ???
@@ -157,4 +159,8 @@ object Dictionary {
       wordstream.close()
     }
   }
+}
+
+object test extends App {
+  println("Reading a book".groupBy(_.toLower).map(c => (c._1, c._2.length)).toList)
 }
