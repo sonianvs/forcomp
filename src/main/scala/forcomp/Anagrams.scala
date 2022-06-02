@@ -1,6 +1,8 @@
 package forcomp
 
-import scala.io.{ Codec, Source }
+import forcomp.Anagrams.{dictionary, wordOccurrences}
+
+import scala.io.{Codec, Source}
 
 object Anagrams extends AnagramsInterface {
 
@@ -57,7 +59,7 @@ object Anagrams extends AnagramsInterface {
    *    List(('a', 1), ('e', 1), ('t', 1)) -> Seq("ate", "eat", "tea")
    *
    */
-  lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = ???
+  lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = dictionary.groupBy(wordOccurrences(_))
 
   /** Returns all the anagrams of a given word. */
   def wordAnagrams(word: Word): List[Word] = ???
@@ -163,6 +165,7 @@ object Dictionary {
 
 object test extends App {
   val list = List("Reading", "a", "book")
-  println("Reading a book".groupBy(_.toLower).map(c => (c._1, c._2.length)).toList)
+  println("book".groupBy(_.toLower).map(c => (c._1, c._2.length)).toList)
   println(list.mkString)
+  println(dictionary.groupBy(wordOccurrences(_)).get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet))
 }
